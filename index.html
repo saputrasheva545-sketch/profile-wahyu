@@ -1,0 +1,827 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sheva Wahyu Saputra | Website Pribadi</title>
+    <style>
+        :root {
+            --bg: #05070a;
+            --panel: rgba(14, 18, 24, 0.88);
+            --text: #f5f7fa;
+            --muted: #9ba6b2;
+            --line: rgba(255, 255, 255, 0.08);
+            --teal: #3db7b2;
+            --sand: #efb366;
+            --coral: #f07f62;
+            --shadow: 0 24px 60px rgba(0, 0, 0, 0.34);
+            --radius-xl: 32px;
+            --radius-lg: 24px;
+            --radius-md: 18px;
+            --container: 1180px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            min-height: 100vh;
+            font-family: Georgia, "Times New Roman", serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(61, 183, 178, 0.14), transparent 26%),
+                radial-gradient(circle at 85% 8%, rgba(240, 127, 98, 0.12), transparent 22%),
+                linear-gradient(180deg, #040608 0%, #090c11 46%, #11161d 100%);
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.18;
+            background:
+                linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+            background-size: 34px 34px;
+            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.95), transparent 92%);
+        }
+
+        a { color: inherit; text-decoration: none; }
+        img { display: block; max-width: 100%; }
+        .container { width: min(var(--container), calc(100% - 32px)); margin: 0 auto; }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            backdrop-filter: blur(14px);
+            background: rgba(7, 10, 13, 0.82);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .nav {
+            min-height: 76px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .brand {
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus-visible { color: var(--teal); }
+
+        .hero { padding: 56px 0 28px; }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.18fr) minmax(320px, 0.82fr);
+            gap: 26px;
+        }
+
+        .panel,
+        .interest-card,
+        .journal-card,
+        .certificate-card,
+        .contact-card,
+        .quote-card,
+        .photo-card {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(16px);
+        }
+
+        .hero-copy {
+            position: relative;
+            overflow: hidden;
+            padding: 38px;
+        }
+
+        .hero-copy::after {
+            content: "";
+            position: absolute;
+            right: -80px;
+            bottom: -90px;
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(61, 183, 178, 0.18), transparent 72%);
+        }
+
+        .eyebrow,
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            width: fit-content;
+            gap: 8px;
+            padding: 9px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        h1 {
+            margin: 18px 0;
+            font-size: clamp(3rem, 6vw, 5.8rem);
+            line-height: 0.92;
+        }
+
+        .hero-copy p,
+        .section-head p,
+        .interest-card p,
+        .journal-card p,
+        .certificate-head p,
+        .gallery-item p,
+        .contact-card p,
+        .quote-card p {
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 28px;
+        }
+
+        .btn {
+            min-height: 48px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 22px;
+            border-radius: 999px;
+            font-weight: 700;
+            transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease;
+        }
+
+        .btn:hover,
+        .btn:focus-visible { transform: translateY(-2px); }
+        .btn-primary { background: var(--teal); color: #061012; }
+        .btn-primary:hover,
+        .btn-primary:focus-visible { background: #58c9c4; }
+        .btn-secondary { border: 1px solid rgba(255, 255, 255, 0.1); background: rgba(255, 255, 255, 0.04); }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 30px;
+        }
+
+        .stat {
+            padding: 16px;
+            border-radius: var(--radius-md);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .stat strong {
+            display: block;
+            margin-bottom: 6px;
+            color: var(--sand);
+            font-size: 1.15rem;
+        }
+
+        .stat span { color: var(--muted); font-size: 0.92rem; line-height: 1.6; }
+
+        .photo-card { padding: 22px; display: grid; gap: 16px; }
+
+        .hero-photo {
+            min-height: 460px;
+            border-radius: 28px;
+            overflow: hidden;
+            position: relative;
+            background:
+                linear-gradient(180deg, rgba(4, 8, 12, 0.12), rgba(4, 8, 12, 0.56)),
+                url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+        }
+
+        .hero-photo::after {
+            content: "Traveling � Voli � Teknik Informatika";
+            position: absolute;
+            left: 18px;
+            bottom: 18px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: rgba(5, 7, 10, 0.76);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #eef4f7;
+            font-size: 0.86rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .photo-card small { color: var(--muted); line-height: 1.7; }
+        section { padding: 32px 0; }
+
+        .section-head {
+            display: grid;
+            grid-template-columns: minmax(0, 0.75fr) minmax(0, 1fr);
+            gap: 22px;
+            align-items: end;
+            margin-bottom: 22px;
+        }
+
+        h2 { font-size: clamp(2rem, 3vw, 3rem); line-height: 1; }
+
+        .interest-grid,
+        .journal-grid,
+        .certificate-grid,
+        .contact-grid {
+            display: grid;
+            gap: 18px;
+        }
+
+        .interest-grid,
+        .journal-grid,
+        .certificate-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .interest-card,
+        .journal-card,
+        .contact-card,
+        .quote-card { padding: 24px; }
+
+        .interest-card h3,
+        .journal-card h3,
+        .gallery-item h3,
+        .certificate-head h3 {
+            margin: 16px 0 12px;
+            font-size: 1.28rem;
+        }
+
+        .interest-visual {
+            width: 62px;
+            height: 62px;
+            border-radius: 18px;
+            display: grid;
+            place-items: center;
+            font-size: 1.35rem;
+            background: linear-gradient(135deg, rgba(61, 183, 178, 0.22), rgba(240, 127, 98, 0.18));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .certificate-card { padding: 0; overflow: hidden; }
+        .certificate-toggle {
+            list-style: none;
+            cursor: pointer;
+            padding: 22px;
+            display: flex;
+            justify-content: space-between;
+            gap: 14px;
+            align-items: flex-start;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
+        }
+        .certificate-toggle::-webkit-details-marker { display: none; }
+        .certificate-toggle::after {
+            content: "+";
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--teal);
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .certificate-card[open] .certificate-toggle::after { content: "-"; }
+        .certificate-body { padding: 0 22px 22px; display: grid; gap: 14px; }
+
+        .certificate-body img,
+        .gallery-item img {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: transform 0.22s ease, box-shadow 0.22s ease;
+        }
+
+        .certificate-body a:hover img,
+        .gallery-item a:hover img {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 28px rgba(0, 0, 0, 0.28);
+        }
+
+        .certificate-link {
+            width: fit-content;
+            display: inline-flex;
+            align-items: center;
+            min-height: 42px;
+            padding: 0 16px;
+            border-radius: 999px;
+            background: rgba(61, 183, 178, 0.12);
+            border: 1px solid rgba(61, 183, 178, 0.28);
+            color: #dff8f7;
+            font-size: 0.92rem;
+        }
+
+        .gallery-wrap { grid-template-columns: 1fr; }
+        .gallery-items { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+
+        .gallery-item {
+            padding: 16px;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            display: grid;
+            gap: 12px;
+        }
+
+        .contact-grid { grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr); align-items: stretch; }
+        .contact-list { display: grid; gap: 12px; margin-top: 18px; }
+
+        .contact-item {
+            min-height: 70px;
+            padding: 14px 16px;
+            border-radius: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .contact-item strong { display: block; margin-bottom: 3px; }
+        .contact-item span { color: var(--muted); line-height: 1.6; }
+
+        .quote-card {
+            display: grid;
+            align-content: space-between;
+            gap: 20px;
+            background: linear-gradient(180deg, rgba(61, 183, 178, 0.12), rgba(255, 255, 255, 0.04));
+        }
+
+        .quote-text { font-size: 1.28rem; line-height: 1.8; }
+        footer { padding: 22px 0 40px; }
+
+        .footer-line {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        [data-reveal] {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+        }
+
+        [data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 1080px) {
+            .hero-grid,
+            .section-head,
+            .contact-grid { grid-template-columns: 1fr; }
+            .interest-grid,
+            .journal-grid,
+            .certificate-grid,
+            .gallery-items { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+
+        @media (max-width: 720px) {
+            .nav,
+            .hero-stats,
+            .interest-grid,
+            .journal-grid,
+            .certificate-grid,
+            .gallery-items,
+            .footer-line { grid-template-columns: 1fr; display: grid; }
+            .nav { justify-content: normal; }
+            .nav-links { gap: 12px; }
+            .hero-copy,
+            .interest-card,
+            .journal-card,
+            .contact-card,
+            .quote-card { padding: 22px; }
+            .certificate-toggle,
+            .certificate-body,
+            .photo-card { padding-left: 18px; padding-right: 18px; }
+            .certificate-body { padding-bottom: 18px; }
+            .hero-photo { min-height: 340px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="topbar">
+        <div class="container nav">
+            <a class="brand" href="#home">Sheva Wahyu Saputra</a>
+            <nav class="nav-links">
+                <a href="#about">Tentang</a>
+                <a href="#focus">Minat</a>
+                <a href="#stories">Cerita</a>
+                <a href="#certificates">Sertifikat</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#contact">Kontak</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="container hero-grid">
+                <div class="panel hero-copy" data-reveal>
+                    <span class="eyebrow">Website pribadi bertema sederhana dan elegan</span>
+                    <h1>Traveling, voli, dan teknik informatika dalam satu ruang personal.</h1>
+                    <p>
+                        Saya adalah pribadi yang suka mencari pengalaman baru lewat perjalanan, menjaga semangat kompetitif lewat voli,
+                        dan menikmati cara berpikir terstruktur lewat dunia teknik informatika. Website ini merangkum tiga hal yang paling dekat dengan keseharian saya.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="#gallery">Lihat Gallery</a>
+                        <a class="btn btn-secondary" href="#certificates">Lihat Sertifikat Voli</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <strong>Traveling</strong>
+                            <span>Mencari tempat baru, suasana baru, dan pengalaman yang berkesan.</span>
+                        </div>
+                        <div class="stat">
+                            <strong>Voli</strong>
+                            <span>Belajar fokus, disiplin, dan kerja sama tim dari lapangan.</span>
+                        </div>
+                        <div class="stat">
+                            <strong>Informatika</strong>
+                            <span>Menikmati proses menyusun solusi dengan logika yang rapi.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="photo-card" data-reveal>
+                    <div class="hero-photo" aria-label="Ilustrasi suasana traveling pegunungan"></div>
+                    <small>
+                        Website ini dibuat dengan background hitam, warna aksen yang simple, dan tata letak yang fokus pada cerita pribadi,
+                        sertifikat voli, serta gallery traveling yang bisa dibuka dalam satu tombol utama.
+                    </small>
+                </aside>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <div class="section-head" data-reveal>
+                    <div>
+                        <span class="tag">Tentang Saya</span>
+                        <h2>Pribadi aktif yang suka eksplorasi, olahraga, dan teknologi.</h2>
+                    </div>
+                    <p>
+                        Saya menikmati keseimbangan antara petualangan di alam, permainan cepat di lapangan voli, dan proses belajar teknologi.
+                        Tiga hal ini membuat saya terus berkembang, baik secara pengalaman maupun cara berpikir.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="focus">
+            <div class="container">
+                <div class="section-head" data-reveal>
+                    <div>
+                        <span class="tag">Minat Utama</span>
+                        <h2>Tiga hal yang paling sering membentuk ritme hidup saya.</h2>
+                    </div>
+                    <p>
+                        Setiap minat punya warna yang berbeda. Traveling memberi sudut pandang baru, voli memberi energi dan kedisiplinan,
+                        sedangkan teknik informatika melatih saya berpikir lebih sistematis.
+                    </p>
+                </div>
+
+                <div class="interest-grid">
+                    <article class="interest-card" data-reveal>
+                        <div class="interest-visual">01</div>
+                        <h3>Traveling</h3>
+                        <p>Saya suka mengunjungi tempat dengan suasana alam, pegunungan, pantai, dan jalur perjalanan yang memberi pengalaman tenang sekaligus menantang.</p>
+                    </article>
+                    <article class="interest-card" data-reveal>
+                        <div class="interest-visual">02</div>
+                        <h3>Voli</h3>
+                        <p>Voli menjadi ruang untuk menjaga daya juang, konsistensi latihan, dan kemampuan bekerja sama dengan tim dalam tekanan pertandingan.</p>
+                    </article>
+                    <article class="interest-card" data-reveal>
+                        <div class="interest-visual">03</div>
+                        <h3>Teknik Informatika</h3>
+                        <p>Saya tertarik pada teknologi karena di dalamnya ada logika, struktur, dan tantangan untuk memecahkan masalah dengan cara yang efektif.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <section id="stories">
+            <div class="container">
+                <div class="section-head" data-reveal>
+                    <div>
+                        <span class="tag">Cerita Singkat</span>
+                        <h2>Hal-hal kecil yang membentuk cara saya melihat perjalanan hidup.</h2>
+                    </div>
+                    <p>Bagian ini sengaja dibuat seperti catatan pendek agar website terasa lebih personal dan benar-benar menggambarkan karakter saya.</p>
+                </div>
+                <div class="journal-grid">
+                    <article class="journal-card" data-reveal>
+                        <span class="tag">Cerita 01</span>
+                        <h3>Traveling mengajarkan saya menikmati proses</h3>
+                        <p>Saat pergi ke tempat baru, saya belajar bahwa perjalanan yang berkesan tidak selalu harus cepat. Banyak momen terbaik justru datang dari langkah yang pelan.</p>
+                    </article>
+                    <article class="journal-card" data-reveal>
+                        <span class="tag">Cerita 02</span>
+                        <h3>Voli membentuk mental bertanding dan kerja sama</h3>
+                        <p>Di lapangan saya belajar menjaga fokus, membaca situasi, dan percaya bahwa permainan terbaik selalu datang dari tim yang saling mendukung.</p>
+                    </article>
+                    <article class="journal-card" data-reveal>
+                        <span class="tag">Cerita 03</span>
+                        <h3>Informatika membuat saya lebih terstruktur</h3>
+                        <p>Belajar teknologi membantu saya melihat masalah dengan lebih jelas, lalu menyusun langkah solusi secara rapi dan bertahap.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="certificates">
+            <div class="container">
+                <div class="section-head" data-reveal>
+                    <div>
+                        <span class="tag">Prestasi Voli</span>
+                        <h2>3 sertifikat voli dalam kolom kecil yang bisa dibuka dan disembunyikan.</h2>
+                    </div>
+                    <p>Setiap sertifikat ditampilkan dalam kartu kecil berbasis tombol buka tutup. Ringkasannya tetap terlihat untuk semua orang, dan ketika dibuka akan muncul gambar sertifikat beserta tombol untuk melihat ukuran penuh.</p>
+                </div>
+
+                <div class="certificate-grid">
+                    <details class="certificate-card" data-reveal>
+                        <summary class="certificate-toggle">
+                            <div class="certificate-head">
+                                <span class="tag">Sertifikat 01</span>
+                                <h3>Juara 2 Turnamen Kejurkot</h3>
+                                <p>Piala Ketua KONI Kota Bekasi U-19, menandai pengalaman bertanding yang kompetitif dan penuh kerja sama tim.</p>
+                            </div>
+                        </summary>
+                        <div class="certificate-body">
+                            <a href="https://files.catbox.moe/ky86t8.jpg" target="_blank" rel="noreferrer"><img src="https://files.catbox.moe/ky86t8.jpg" alt="Sertifikat voli juara 2 turnamen kejurkot"></a>
+                            <a class="certificate-link" href="https://files.catbox.moe/ky86t8.jpg" target="_blank" rel="noreferrer">Buka ukuran penuh</a>
+                        </div>
+                    </details>
+                    <details class="certificate-card" data-reveal>
+                        <summary class="certificate-toggle">
+                            <div class="certificate-head">
+                                <span class="tag">Sertifikat 02</span>
+                                <h3>Juara 2 PBV PUR CUP 2023</h3>
+                                <p>Sertifikat ini mewakili konsistensi latihan dan pencapaian pada kejuaraan nasional terbatas antar club bola voli.</p>
+                            </div>
+                        </summary>
+                        <div class="certificate-body">
+                            <a href="https://files.catbox.moe/hgpmv9.jpg" target="_blank" rel="noreferrer"><img src="https://files.catbox.moe/hgpmv9.jpg" alt="Sertifikat voli PBV PUR CUP 2023"></a>
+                            <a class="certificate-link" href="https://files.catbox.moe/hgpmv9.jpg" target="_blank" rel="noreferrer">Buka ukuran penuh</a>
+                        </div>
+                    </details>
+                    <details class="certificate-card" data-reveal>
+                        <summary class="certificate-toggle">
+                            <div class="certificate-head">
+                                <span class="tag">Sertifikat 03</span>
+                                <h3>Juara 2 Turnamen ALPUR</h3>
+                                <p>Pengalaman bertanding di kelompok usia 2007 se-Jawa Barat dengan hasil juara dua dan banyak pelajaran dari kompetisi.</p>
+                            </div>
+                        </summary>
+                        <div class="certificate-body">
+                            <a href="https://files.catbox.moe/82xoon.jpg" target="_blank" rel="noreferrer"><img src="https://files.catbox.moe/82xoon.jpg" alt="Sertifikat voli turnamen ALPUR"></a>
+                            <a class="certificate-link" href="https://files.catbox.moe/82xoon.jpg" target="_blank" rel="noreferrer">Buka ukuran penuh</a>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery">
+            <div class="container">
+                <div class="section-head" data-reveal>
+                    <div>
+                        <span class="tag">Travel Gallery</span>
+                        <h2>Gallery 18 Foto.</h2>
+                    </div>
+                    
+                </div>
+
+                <div class="certificate-grid gallery-wrap">
+                    <details class="certificate-card" data-reveal>
+                        <summary class="certificate-toggle">
+                            <div class="certificate-head">
+                                <span class="tag">Gallery Utama</span>
+                                <h3>Buka 18 Foto Perjalanan Favorit</h3>
+                                <p>Klik bagian ini untuk menampilkan seluruh foto traveling dalam satu tempat yang rapi dan mudah dibaca.</p>
+                            </div>
+                        </summary>
+                        <div class="certificate-body">
+                            <div class="gallery-items">
+                                <article class="gallery-item">
+                                    <a href="https://files.catbox.moe/51p7mt.jpeg" target="_blank" rel="noreferrer"><img src="https://files.catbox.moe/51p7mt.jpeg" alt="Pemandangan pegunungan saat traveling"></a>
+                                    <h3>Kebun Teh Badakah</h3>
+                                    <p>SKebun Teh Bedakah merupakan salah satu destinasi wisata alam unggulan di Kabupaten Wonosobo, Jawa Tengah, yang menawarkan panorama khas perkebunan teh di dataran tinggi..</p>
+                                    <a class="certificate-link" href="https://files.catbox.moe/51p7mt.jpeg" target="_blank" rel="noreferrer">Buka ukuran penuh</a>
+                                </article>
+                                <article class="gallery-item">
+                                    <a href="https://files.catbox.moe/oluxin.jpeg" target="_blank" rel="noreferrer"><img src="https://files.catbox.moe/oluxin.jpeg" alt="Danau pegunungan"></a>
+                                    <h3>Bukit Pengilon</h3>
+                                    <p>Bukit Pengilon merupakan destinasi wisata alam yang indah dengan keunikannya. berbeda dari bukit-bukit lain di Gunungkidul yang didominasi tebing karst, Bukit Pengilon menghadirkan hamparan savana hijau luas yang langsung menghadap samudra hindia.</p>
+                                    <a class="certificate-link" href="https://files.catbox.moe/oluxin.jpeg" target="_blank" rel="noreferrer">Buka ukuran penuh</a>
+                                </article>
+                                <article class="gallery-item">
+                                    <a href="https://files.catbox.moe/yfu7yu.jpeg" target="_blank" rel="noreferrer"><img src="https://files.catbox.moe/yfu7yu.jpeg" alt="Pantai dengan ombak"></a>
+                                    <h3>Pantai Parangtritis Sore Hari</h3>
+                                    <p>Pantai Parangtritis adalah salah satu destinasi wisata yang paling hits di Yogyakarta, terutama di kawasan pantai selatan. Berlokasi sekitar 27 kilometer dari pusat kota, pantai ini sangat mudah dijangkau. Pantai Parangtritis memberikan pemandangan laut yang super indah.</p>
+                                    <a class="certificate-link" href="https://files.catbox.moe/yfu7yu.jpeg" target="_blank" rel="noreferrer">Buka ukuran penuh</a>
+                                </article>
+                                <article class="gallery-item">
+                                    <a href="https://files.catbox.moe/e0gm9g.jpeg" target="_blank" rel="noreferrer"><img src="https://files.catbox.moe/e0gm9g.jpeg" alt="Jalur pendakian alam"></a>
+                                    <h3>Gunung Prau</h3>
+                                    <p>Gunung Prau memiliki puncak yang luas, berbentuk datar, dan sering dijadikan tempat untuk menikmati matahari terbit (sunrise). Gunung ini merupakan bagian dari kompleks pegunungan Dieng, yang dikenal dengan lanskap alam yang sangat indah.</p>
+                                    <a class="certificate-link" href="https://files.catbox.moe/e0gm9g.jpeg" target="_blank" rel="noreferrer">Buka ukuran penuh</a>
+                                </article>
+                                <article class="gallery-item">
+                                    <a href="https://files.catbox.moe/2n4g8u.jpeg" target="_blank" rel="noreferrer"><img src="https://files.catbox.moe/2n4g8u.jpeg" alt="Hutan pinus"></a>
+                                    <h3>Hutan Pinus Mangunan</h3>
+                                    <p>Hutan Pinus Mangunan adalah hutan pinus yang terletak di Sukorame, Mangunan, Dlingo, Bantul, Daerah Istimewa Yogyakarta. Sebelum wisata ini dikenal banyak orang, hutan ini dulunya merupakan kawasan tandus.</p>
+                                    <a class="certificate-link" href="https://files.catbox.moe/2n4g8u.jpeg" target="_blank" rel="noreferrer">Buka ukuran penuh</a>
+                                </article>
+                                <article class="gallery-item">
+                                    <a href="https://files.catbox.moe/dzbypo.jpeg" target="_blank" rel="noreferrer"><img src="https://files.catbox.moe/dzbypo.jpeg" alt="Bukit dengan kabut pagi"></a>
+                                    <h3>Senja Klaten</h3>
+                                    <p>Klaten merupakan kabupaten yang terletak di antara Solo dan Yogyakarta. Meskipun kecil, Klaten menyimpan destinasi wisata yang sayang untuk dilewatkan.</p>
+                                    <a class="certificate-link" href="https://files.catbox.moe/dzbypo.jpeg" target="_blank" rel="noreferrer">Buka ukuran penuh</a>
+                                </article>
+                                <article class="gallery-item">
+                                    <a href="https://files.catbox.moe/dbrwzi.jpeg" target="_blank" rel="noreferrer"><img src="https://files.catbox.moe/dbrwzi.jpeg" alt="Kota malam dari atas"></a>
+                                    <h3>Gunung Sepikul</h3>
+                                    <p>Melihat lampu kota dari sudut yang berbeda memberi suasana reflektif setelah perjalanan panjang seharian.</p>
+                                    <a class="certificate-link" href="https://files.catbox.moe/dbrwzi.jpeg" target="_blank" rel="noreferrer">Buka ukuran penuh</a>
+                                </article>
+                                <article class="gallery-item">
+                                    <a href="https://files.catbox.moe/216bst.jpeg" target="_blank" rel="noreferrer"><img src="https://files.catbox.moe/216bst.jpeg" alt="Air terjun di alam"></a>
+                                    <h3>Gesing Wonderland</h3>
+                                    <p>Suara air dan suasana lembap di sekitar tebing memberi pengalaman yang segar dan terasa hidup.</p>
+                                    <a class="certificate-link" href="https://files.catbox.moe/216bst.jpeg" target="_blank" rel="noreferrer">Buka ukuran penuh</a>
+                                </article>
+                                <article class="gallery-item">
+                                    <a href="https://files.catbox.moe/nm4d99.jpeg" target="_blank" rel="noreferrer"><img src="https://files.catbox.moe/nm4d99.jpeg" alt="Lembah luas dan pegunungan"></a>
+                                    <h3>Umbul Kroman</h3>
+                                    <p>Pemandangan luas seperti ini selalu memberi rasa lega dan mengingatkan bahwa perjalanan punya banyak kemungkinan.</p>
+                                    <a class="certificate-link" href="https://files.catbox.moe/nm4d99.jpeg" target="_blank" rel="noreferrer">Buka ukuran penuh</a>
+                                </article>
+                                <article class="gallery-item">
+                                    <a href="https://files.catbox.moe/c34g07.jpeg" target="_blank" rel="noreferrer"><img src="https://files.catbox.moe/c34g07.jpeg" alt="Jalan di padang rumput"></a>
+                                    <h3>Pantai Siung</h3>
+                                    <p>Jalur terbuka dengan cahaya alami yang hangat, cocok untuk menikmati perjalanan santai dan suasana lapang.</p>
+                                    <a class="certificate-link" href="https://files.catbox.moe/c34g07.jpeg" target="_blank" rel="noreferrer">Buka ukuran penuh</a>
+                                </article>
+                                <article class="gallery-item">
+                                    <a href="https://files.catbox.moe/8qr045.jpeg" target="_blank" rel="noreferrer"><img src="https://files.catbox.moe/8qr045.jpeg" alt="Danau dan pegunungan hijau"></a>
+                                    <h3>Deles Indah</h3>
+                                    <p>Air yang tenang, warna alam yang bersih, dan atmosfer sejuk menjadikan tempat ini terasa sangat menenangkan.</p>
+                                    <a class="certificate-link" href="https://files.catbox.moe/8qr045.jpeg" target="_blank" rel="noreferrer">Buka ukuran penuh</a>
+                                </article>
+                                <article class="gallery-item">
+                                    <a href="https://files.catbox.moe/xfowju.jpeg" target="_blank" rel="noreferrer"><img src="https://files.catbox.moe/xfowju.jpeg" alt="Laut lepas dan ombak"></a>
+                                    <h3>Banyu Nibo Pengilon</h3>
+                                    <p>Nuansa laut dengan ombak panjang memberi kesan bebas dan menjadi penutup yang kuat untuk kumpulan gallery perjalanan ini.</p>
+                                    <a class="certificate-link" href="https://files.catbox.moe/xfowju.jpeg" target="_blank" rel="noreferrer">Buka ukuran penuh</a>
+                                </article>
+                                <article class="gallery-item">
+                                    <a href="https://images.unsplash.com/photo-1465189684280-6a8fa9b19a7a?auto=format&fit=crop&w=1400&q=80" target="_blank" rel="noreferrer"><img src="https://images.unsplash.com/photo-1465189684280-6a8fa9b19a7a?auto=format&fit=crop&w=900&q=80" alt="Sawah bertingkat dan bukit"></a>
+                                    <h3>Sawah Bertingkat</h3>
+                                    <p>Pemandangan terasering yang hijau dan rapi memberi suasana tenang untuk menikmati perjalanan alam yang lebih santai.</p>
+                                    <a class="certificate-link" href="https://images.unsplash.com/photo-1465189684280-6a8fa9b19a7a?auto=format&fit=crop&w=1400&q=80" target="_blank" rel="noreferrer">Buka ukuran penuh</a>
+                                </article>
+                                <article class="gallery-item">
+                                    <a href="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1400&q=80" target="_blank" rel="noreferrer"><img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=80" alt="Tebing dan laut biru"></a>
+                                    <h3>Tebing Laut Selatan</h3>
+                                    <p>Tebing tinggi dengan pemandangan laut lepas memberi nuansa petualangan yang kuat dan panorama yang terbuka.</p>
+                                    <a class="certificate-link" href="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1400&q=80" target="_blank" rel="noreferrer">Buka ukuran penuh</a>
+                                </article>
+                                <article class="gallery-item">
+                                    <a href="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&w=1400&q=80" target="_blank" rel="noreferrer"><img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&w=900&q=80" alt="Jalan hutan dan cahaya pagi"></a>
+                                    <h3>Jalur Hutan Pagi</h3>
+                                    <p>Cahaya matahari yang menembus pepohonan membuat suasana perjalanan terasa segar, hangat, dan penuh energi baru.</p>
+                                    <a class="certificate-link" href="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&w=1400&q=80" target="_blank" rel="noreferrer">Buka ukuran penuh</a>
+                                </article>
+                                <article class="gallery-item">
+                                    <a href="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=1400&q=80" target="_blank" rel="noreferrer"><img src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=900&q=80" alt="Kabut di pegunungan"></a>
+                                    <h3>Kabut Pegunungan</h3>
+                                    <p>Lapisan kabut yang tipis di pegunungan memberi kesan dramatis dan membuat perjalanan terasa lebih berkesan.</p>
+                                    <a class="certificate-link" href="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=1400&q=80" target="_blank" rel="noreferrer">Buka ukuran penuh</a>
+                                </article>
+                                <article class="gallery-item">
+                                    <a href="https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=1400&q=80" target="_blank" rel="noreferrer"><img src="https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=900&q=80" alt="Padang rumput luas"></a>
+                                    <h3>Padang Terbuka</h3>
+                                    <p>Area alam yang lapang seperti ini memberi rasa bebas dan cocok untuk menikmati horizon yang panjang.</p>
+                                    <a class="certificate-link" href="https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=1400&q=80" target="_blank" rel="noreferrer">Buka ukuran penuh</a>
+                                </article>
+                                <article class="gallery-item">
+                                    <a href="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=80&sat=-20" target="_blank" rel="noreferrer"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80&sat=-20" alt="Bukit dan langit luas"></a>
+                                    <h3>Bukit Langit Luas</h3>
+                                    <p>Pemandangan bukit dengan langit terbuka menjadi penutup yang pas untuk koleksi gallery traveling yang lebih lengkap.</p>
+                                    <a class="certificate-link" href="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=80&sat=-20" target="_blank" rel="noreferrer">Buka ukuran penuh</a>
+                                </article>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container contact-grid">
+                <div class="contact-card" data-reveal>
+                    <div class="section-head">
+                        <div>
+                            <span class="tag">Kontak</span>
+                            <h2>Bagian yang siap dipakai sebagai halaman pribadi.</h2>
+                        </div>
+                        <p>Kamu bisa memakai bagian ini untuk menampilkan kontak yang mudah diakses siapa pun yang melihat website ini.</p>
+                    </div>
+                    <div class="contact-list">
+                        <a class="contact-item" href="mailto:saputrasheva545@gmail.com">
+                            <div>
+                                <strong>Email</strong>
+                                <span>saputrasheva545@gmail.com</span>
+                            </div>
+                            <span>Kirim pesan</span>
+                        </a>
+                        <a class="contact-item" href="https://instagram.com/s.wahyu997" target="_blank" rel="noreferrer">
+                            <div>
+                                <strong>Instagram</strong>
+                                <span>@s.wahyu997</span>
+                            </div>
+                            <span>Lihat profil</span>
+                        </a>
+                        <a class="contact-item" href="https://wa.me/6285780000752" target="_blank" rel="noreferrer">
+                            <div>
+                                <strong>WhatsApp</strong>
+                                <span>085780000752</span>
+                            </div>
+                            <span>Hubungi</span>
+                        </a>
+                    </div>
+                </div>
+
+                <aside class="quote-card" data-reveal>
+                    <div>
+                        <p class="quote-text">"Saya suka tempat baru, semangat di lapangan, dan logika dalam teknologi. Dari ketiganya saya belajar untuk terus tumbuh."</p>
+                    </div>
+                    <div>
+                        <strong>Sheva Wahyu Saputra</strong>
+                        <p>Website pribadi dengan nuansa gelap yang menampilkan minat utama saya pada traveling, voli, dan teknik informatika.</p>
+                    </div>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-line">
+            <span>� 2026 Sheva Wahyu Saputra</span>
+            <span>Website pribadi dengan tema traveling, voli, dan teknik informatika</span>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("is-visible");
+                }
+            });
+        }, { threshold: 0.16 });
+
+        document.querySelectorAll("[data-reveal]").forEach((element) => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
